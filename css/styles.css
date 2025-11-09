@@ -308,6 +308,11 @@ header.header-visible {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-top: 0;
+}
+
+.subfield-page header {
+    display: none;
 }
 
 .subfield-page main {
@@ -319,7 +324,6 @@ header.header-visible {
     color: white;
     padding: 3rem 0;
     text-align: center;
-    margin-top: 2rem;
     position: relative;
     overflow: hidden;
 }
@@ -393,6 +397,7 @@ header.header-visible {
     letter-spacing: -0.02em;
     position: relative;
     z-index: 1;
+    clear: both;
 }
 
 .page-header p {
@@ -417,6 +422,8 @@ header.header-visible {
     transition: var(--transition-base);
     position: relative;
     z-index: 1;
+    float: left;
+    clear: both;
 }
 
 .back-link:hover {
