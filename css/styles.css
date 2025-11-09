@@ -37,6 +37,7 @@ body {
     color: var(--text-primary);
     background-color: var(--bg-secondary);
     font-size: 16px;
+    padding-top: 110px; /* Space for fixed header */
 }
 
 .container {
@@ -53,9 +54,24 @@ header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
     color: white;
     box-shadow: var(--shadow-md);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+header.header-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+header.header-visible {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .navbar {
@@ -381,6 +397,10 @@ footer p:last-child {
    =================================== */
 
 @media (max-width: 768px) {
+    body {
+        padding-top: 95px; /* Adjust for smaller header */
+    }
+
     .container {
         padding: 0 1.5rem;
     }
@@ -420,6 +440,10 @@ footer p:last-child {
 }
 
 @media (max-width: 480px) {
+    body {
+        padding-top: 90px; /* Adjust for even smaller header on mobile */
+    }
+
     .hero h2 {
         font-size: 1.75rem;
     }

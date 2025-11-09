@@ -10,6 +10,7 @@
         initCardAnimations();
         initBackToTop();
         addAccessibilityEnhancements();
+        initHeaderScrollBehavior();
     });
 
     /**
@@ -35,6 +36,49 @@
                     }
                 }
             });
+        });
+    }
+
+    /**
+     * Hide/show header based on scroll direction
+     */
+    function initHeaderScrollBehavior() {
+        const header = document.querySelector('header');
+        if (!header) return;
+
+        let lastScrollTop = 0;
+        let scrollTimeout;
+        const scrollThreshold = 10; // Minimum scroll distance to trigger
+
+        window.addEventListener('scroll', function() {
+            clearTimeout(scrollTimeout);
+
+            scrollTimeout = setTimeout(function() {
+                const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                // Don't hide header if we're at the very top
+                if (currentScrollTop <= 0) {
+                    header.classList.remove('header-hidden');
+                    header.classList.add('header-visible');
+                    lastScrollTop = currentScrollTop;
+                    return;
+                }
+
+                // Check scroll direction
+                if (Math.abs(currentScrollTop - lastScrollTop) > scrollThreshold) {
+                    if (currentScrollTop > lastScrollTop) {
+                        // Scrolling down - hide header
+                        header.classList.add('header-hidden');
+                        header.classList.remove('header-visible');
+                    } else {
+                        // Scrolling up - show header
+                        header.classList.remove('header-hidden');
+                        header.classList.add('header-visible');
+                    }
+                }
+
+                lastScrollTop = currentScrollTop;
+            }, 50);
         });
     }
 
