@@ -261,6 +261,7 @@ header.header-visible {
     color: white;
     padding: 3rem 0;
     text-align: center;
+    margin-top: 2rem;
 }
 
 .page-header h1 {
