@@ -51,13 +51,7 @@ body {
    =================================== */
 
 header {
-    background:
-        linear-gradient(135deg, rgba(37, 99, 235, 0.95) 0%, rgba(30, 64, 175, 0.95) 100%),
-        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px),
-        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px),
-        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 50%);
-    background-size: 100% 100%, 40px 40px, 40px 40px, 100% 100%, 100% 100%;
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #1e3a8a 100%);
     color: white;
     box-shadow: var(--shadow-md);
     position: fixed;
@@ -71,6 +65,7 @@ header {
     overflow: hidden;
 }
 
+/* Circuit board lines - horizontal */
 header::before {
     content: '';
     position: absolute;
@@ -78,24 +73,51 @@ header::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background:
-        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.02) 10px, rgba(255, 255, 255, 0.02) 20px),
-        repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.02) 10px, rgba(255, 255, 255, 0.02) 20px);
+    background-image:
+        /* Horizontal circuit traces */
+        linear-gradient(90deg, transparent 0%, transparent calc(15% - 1px), rgba(59, 130, 246, 0.4) calc(15% - 1px), rgba(59, 130, 246, 0.4) calc(15% + 1px), transparent calc(15% + 1px)),
+        linear-gradient(90deg, transparent 0%, transparent calc(45% - 1px), rgba(96, 165, 250, 0.3) calc(45% - 1px), rgba(96, 165, 250, 0.3) calc(45% + 1px), transparent calc(45% + 1px)),
+        linear-gradient(90deg, transparent 0%, transparent calc(75% - 1px), rgba(59, 130, 246, 0.35) calc(75% - 1px), rgba(59, 130, 246, 0.35) calc(75% + 1px), transparent calc(75% + 1px)),
+        /* Vertical circuit traces */
+        linear-gradient(0deg, transparent 0%, transparent calc(30% - 1px), rgba(96, 165, 250, 0.25) calc(30% - 1px), rgba(96, 165, 250, 0.25) calc(30% + 1px), transparent calc(30% + 1px)),
+        linear-gradient(0deg, transparent 0%, transparent calc(65% - 1px), rgba(59, 130, 246, 0.3) calc(65% - 1px), rgba(59, 130, 246, 0.3) calc(65% + 1px), transparent calc(65% + 1px));
     pointer-events: none;
 }
 
+/* Network nodes and connection points with glow */
 header::after {
-    content: '';
+    content: '01001001 01010100';
     position: absolute;
+    top: 10px;
+    right: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: rgba(96, 165, 250, 0.3);
+    letter-spacing: 2px;
+    pointer-events: none;
+    background-image:
+        /* Glowing nodes at intersections */
+        radial-gradient(circle 3px at 15% 30%, rgba(96, 165, 250, 0.9) 0%, rgba(96, 165, 250, 0.5) 40%, transparent 100%),
+        radial-gradient(circle 4px at 15% 30%, rgba(96, 165, 250, 0.4) 0%, transparent 100%),
+        radial-gradient(circle 2px at 45% 30%, rgba(147, 197, 253, 1) 0%, rgba(96, 165, 250, 0.6) 40%, transparent 100%),
+        radial-gradient(circle 5px at 45% 30%, rgba(96, 165, 250, 0.3) 0%, transparent 100%),
+        radial-gradient(circle 3px at 75% 30%, rgba(96, 165, 250, 0.8) 0%, rgba(96, 165, 250, 0.4) 40%, transparent 100%),
+        radial-gradient(circle 4px at 75% 30%, rgba(96, 165, 250, 0.3) 0%, transparent 100%),
+        radial-gradient(circle 2px at 15% 65%, rgba(147, 197, 253, 0.9) 0%, rgba(96, 165, 250, 0.5) 40%, transparent 100%),
+        radial-gradient(circle 5px at 15% 65%, rgba(96, 165, 250, 0.25) 0%, transparent 100%),
+        radial-gradient(circle 3px at 45% 65%, rgba(96, 165, 250, 0.95) 0%, rgba(96, 165, 250, 0.6) 40%, transparent 100%),
+        radial-gradient(circle 6px at 45% 65%, rgba(96, 165, 250, 0.35) 0%, transparent 100%),
+        radial-gradient(circle 2px at 75% 65%, rgba(147, 197, 253, 0.85) 0%, rgba(96, 165, 250, 0.4) 40%, transparent 100%),
+        radial-gradient(circle 4px at 75% 65%, rgba(96, 165, 250, 0.3) 0%, transparent 100%),
+        /* Ambient glow areas */
+        radial-gradient(ellipse 200px 100px at 25% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 70%),
+        radial-gradient(ellipse 180px 90px at 65% 50%, rgba(96, 165, 250, 0.12) 0%, transparent 70%);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
-        radial-gradient(circle at 90% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 15%),
-        radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 25%);
-    pointer-events: none;
 }
 
 header.header-hidden {
@@ -293,13 +315,7 @@ header.header-visible {
 }
 
 .page-header {
-    background:
-        linear-gradient(135deg, rgba(37, 99, 235, 0.95) 0%, rgba(30, 64, 175, 0.95) 100%),
-        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px),
-        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px),
-        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 50%);
-    background-size: 100% 100%, 40px 40px, 40px 40px, 100% 100%, 100% 100%;
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #1e3a8a 100%);
     color: white;
     padding: 3rem 0;
     text-align: center;
@@ -308,6 +324,7 @@ header.header-visible {
     overflow: hidden;
 }
 
+/* Circuit board lines for page header */
 .page-header::before {
     content: '';
     position: absolute;
@@ -315,24 +332,58 @@ header.header-visible {
     left: 0;
     right: 0;
     bottom: 0;
-    background:
-        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.02) 10px, rgba(255, 255, 255, 0.02) 20px),
-        repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.02) 10px, rgba(255, 255, 255, 0.02) 20px);
+    background-image:
+        /* Horizontal circuit traces */
+        linear-gradient(90deg, transparent 0%, transparent calc(20% - 1px), rgba(59, 130, 246, 0.4) calc(20% - 1px), rgba(59, 130, 246, 0.4) calc(20% + 1px), transparent calc(20% + 1px)),
+        linear-gradient(90deg, transparent 0%, transparent calc(50% - 1px), rgba(96, 165, 250, 0.35) calc(50% - 1px), rgba(96, 165, 250, 0.35) calc(50% + 1px), transparent calc(50% + 1px)),
+        linear-gradient(90deg, transparent 0%, transparent calc(80% - 1px), rgba(59, 130, 246, 0.3) calc(80% - 1px), rgba(59, 130, 246, 0.3) calc(80% + 1px), transparent calc(80% + 1px)),
+        /* Vertical circuit traces */
+        linear-gradient(0deg, transparent 0%, transparent calc(25% - 1px), rgba(96, 165, 250, 0.25) calc(25% - 1px), rgba(96, 165, 250, 0.25) calc(25% + 1px), transparent calc(25% + 1px)),
+        linear-gradient(0deg, transparent 0%, transparent calc(55% - 1px), rgba(59, 130, 246, 0.3) calc(55% - 1px), rgba(59, 130, 246, 0.3) calc(55% + 1px), transparent calc(55% + 1px)),
+        linear-gradient(0deg, transparent 0%, transparent calc(80% - 1px), rgba(96, 165, 250, 0.28) calc(80% - 1px), rgba(96, 165, 250, 0.28) calc(80% + 1px), transparent calc(80% + 1px));
     pointer-events: none;
 }
 
+/* Network nodes with glow for page header */
 .page-header::after {
-    content: '';
+    content: '10110011 01000100';
     position: absolute;
+    top: 15px;
+    left: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: rgba(96, 165, 250, 0.3);
+    letter-spacing: 2px;
+    pointer-events: none;
+    background-image:
+        /* Glowing nodes at circuit intersections */
+        radial-gradient(circle 3px at 20% 25%, rgba(96, 165, 250, 0.95) 0%, rgba(96, 165, 250, 0.5) 40%, transparent 100%),
+        radial-gradient(circle 5px at 20% 25%, rgba(96, 165, 250, 0.35) 0%, transparent 100%),
+        radial-gradient(circle 2px at 50% 25%, rgba(147, 197, 253, 1) 0%, rgba(96, 165, 250, 0.6) 40%, transparent 100%),
+        radial-gradient(circle 6px at 50% 25%, rgba(96, 165, 250, 0.3) 0%, transparent 100%),
+        radial-gradient(circle 3px at 80% 25%, rgba(96, 165, 250, 0.85) 0%, rgba(96, 165, 250, 0.45) 40%, transparent 100%),
+        radial-gradient(circle 4px at 80% 25%, rgba(96, 165, 250, 0.3) 0%, transparent 100%),
+        radial-gradient(circle 2px at 20% 55%, rgba(147, 197, 253, 0.9) 0%, rgba(96, 165, 250, 0.5) 40%, transparent 100%),
+        radial-gradient(circle 5px at 20% 55%, rgba(96, 165, 250, 0.28) 0%, transparent 100%),
+        radial-gradient(circle 3px at 50% 55%, rgba(96, 165, 250, 1) 0%, rgba(96, 165, 250, 0.65) 40%, transparent 100%),
+        radial-gradient(circle 7px at 50% 55%, rgba(96, 165, 250, 0.4) 0%, transparent 100%),
+        radial-gradient(circle 2px at 80% 55%, rgba(147, 197, 253, 0.9) 0%, rgba(96, 165, 250, 0.5) 40%, transparent 100%),
+        radial-gradient(circle 4px at 80% 55%, rgba(96, 165, 250, 0.3) 0%, transparent 100%),
+        radial-gradient(circle 3px at 20% 80%, rgba(96, 165, 250, 0.8) 0%, rgba(96, 165, 250, 0.4) 40%, transparent 100%),
+        radial-gradient(circle 5px at 20% 80%, rgba(96, 165, 250, 0.25) 0%, transparent 100%),
+        radial-gradient(circle 2px at 50% 80%, rgba(147, 197, 253, 0.95) 0%, rgba(96, 165, 250, 0.55) 40%, transparent 100%),
+        radial-gradient(circle 6px at 50% 80%, rgba(96, 165, 250, 0.35) 0%, transparent 100%),
+        radial-gradient(circle 3px at 80% 80%, rgba(96, 165, 250, 0.85) 0%, rgba(96, 165, 250, 0.45) 40%, transparent 100%),
+        radial-gradient(circle 4px at 80% 80%, rgba(96, 165, 250, 0.3) 0%, transparent 100%),
+        /* Ambient glow areas */
+        radial-gradient(ellipse 220px 110px at 30% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 70%),
+        radial-gradient(ellipse 200px 100px at 70% 50%, rgba(96, 165, 250, 0.12) 0%, transparent 70%);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
-        radial-gradient(circle at 90% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 15%),
-        radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 25%);
-    pointer-events: none;
 }
 
 .page-header h1 {
